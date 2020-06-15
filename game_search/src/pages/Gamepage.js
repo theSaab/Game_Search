@@ -7,7 +7,7 @@ export class Gamepage extends Component {
     render() {
         return (
             <div>
-                <h1>Gamepage</h1>
+                <h1>Gameo</h1>
             </div>
         )
     }
