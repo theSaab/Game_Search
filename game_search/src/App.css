@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
-@fa-font-path 
 
 *{
   margin: 0px;
@@ -9,14 +8,52 @@
   font-family: 'Comfortaa', cursives;
 }
 
-body{
-  color:red;
-  background-color: blue;
+.background {
+  background-image: url('./images/pacman.jpg');
+  height: 1000px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
 }
 
-.search-button i {
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 32%;
+  transform: traslate(-50%, -50%);
+  background: rgba(255, 253, 253, 0.6);
+  max-width: 550px;
+  width:100%;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper .input {
+  padding: 15px 20px;
+  width: 85%;
+  border: none;
   color: red;
   background-color: yellow;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.search-button {
+  background: red;
+  width: 10%;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.search-button .fa{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
 }
 
 .input {
