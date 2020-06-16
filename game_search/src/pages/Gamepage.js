@@ -6,11 +6,12 @@ import Gamebox from './Gamebox'
 export class Gamepage extends Component {
     render() {
         return (
-            <div>
-                <h1>Gameo</h1>
+            <div className='gamebox'>
+                <h1>Game</h1>
+                <Gamebox />
             </div>
         )
     }
 }
 
-export default Gamepage
+export default Gamepage;

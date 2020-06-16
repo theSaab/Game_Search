@@ -1,9 +1,15 @@
 
-
+// React 
 import React, { Component } from 'react'
 
+// MUI stuff 
+import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Grid from "@material-ui/core/Grid";
+
 export class AutoCompleteText extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.items = [
             'David',
@@ -27,14 +33,14 @@ export class AutoCompleteText extends Component {
         this.setState(() => ({ suggestions, text: value }));
     }
 
-    suggestionSelected (value) {
+    suggestionSelected(value) {
         this.setState(() => ({
             text: value,
             suggestions: [],
         }))
     }
 
-    renderSuggestions() {  
+    renderSuggestions() {
         const { suggestions } = this.state;
         if (suggestions.length === 0) {
             return null;
@@ -42,8 +48,8 @@ export class AutoCompleteText extends Component {
         return (
             <ul>
                 {suggestions.map((item) =>
-                    <li onClick={() => 
-                    this.suggestionSelected(item)}>{item}</li>)}
+                    <li onClick={() =>
+                        this.suggestionSelected(item)}>{item}</li>)}
             </ul>
         );
     }
@@ -52,15 +58,24 @@ export class AutoCompleteText extends Component {
     render() {
         const { text } = this.state
         return (
-            <div className='suggestions'>
-                <input value={text}
-                onChange={this.onTextChanged}
-                style={{}}
-                type='text' 
-                className='search'
-                placeholder='What game are you searching for?'/>
-                {this.renderSuggestions()}
-            </div>
+
+            // <div className='suggestions'>
+            //     <input value={text}
+            //     onChange={this.onTextChanged}
+            //     style={{}}
+            //     type='text' 
+            //     className='search'
+            //     placeholder='What game are you searching for?'/>
+            //     {this.renderSuggestions()}
+            // </div>
+            <form noValidate autoComplete="off" className='search-bar'>
+                <TextField className='outlined-search-bar' 
+                id="outlined-basic" 
+                // label="What"
+                placeholder='What game are you looking for?' 
+                variant="outlined" />
+            </form>
+
         )
     }
 }
