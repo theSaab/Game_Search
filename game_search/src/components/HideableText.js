@@ -19,8 +19,8 @@ export class HideableText extends Component {
     
     render() {
         return (
-            <div>
-                <button onClick={() => this.toggleisHidden()}>Toggle</button>
+            <div className='toggle-button'>
+                <Button className='toggle-button-text' onClick={() => this.toggleisHidden()}>Toggle</Button>
                 {this.state.isHidden && this.props.text}
             </div>
         )
