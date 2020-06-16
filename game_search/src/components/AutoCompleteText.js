@@ -52,10 +52,12 @@ export class AutoCompleteText extends Component {
     render() {
         const { text } = this.state
         return (
-            <div>
+            <div >
                 <input value={text}
                 onChange={this.onTextChanged}
-                    type='text' />
+                type='text' 
+                className='search'
+                placeholder='What game are you searching for?'/>
                 {this.renderSuggestions()}
             </div>
         )

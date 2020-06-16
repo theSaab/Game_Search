@@ -16,14 +16,16 @@ import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
+    <div className='background'>
     <div className="App">
-      <AutoCompleteText />
-      {/* <Router>
+      <AutoCompleteText className='search-bar'/>
+     <Router>
         <Switch>
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/Gamepage' component={Gamepage} />
         </Switch>
-      </Router> */}
+      </Router> 
+    </div>
     </div>
   );
 }
