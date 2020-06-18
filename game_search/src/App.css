@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
+
+/*
 .App {
   margin: 0px;
   margin-top: 0px;
@@ -8,8 +10,6 @@
   padding: 00px;
   text-align: center;
   position: fixed;
-  top: 35%;
-  left: 37%;
   color: white;
   
 }
@@ -21,31 +21,19 @@
   box-sizing: ;
   font-family: 'Comfortaa', cursives;
 }
-
+*/
 .background {
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-image: url('../src/images/pacman.jpg');
-  background-position: center;
+  background-image: url("../src/images/pacman.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
   background-color: black;
 }
-
+/*
 body {
   height: 100vh;
   position: absolute;
   overflow: hidden;
-}
-
-.search-bar {
-  background-color: rgb(198, 188, 188);
-  position: fixed;
-  top: 40%;
-  left: 37%;
-  width: 250px;
-  font-size: ;
 }
 
 .toggle-button {
@@ -60,8 +48,6 @@ body {
   background-color: rgb(221, 208, 208);
   padding: 5px; 
   position: fixed;
-  top: 40%;
-  left: 37%;
 }
 
 ::placeholder {
@@ -69,23 +55,22 @@ body {
   font-size: 20px;
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder { 
  color: black;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+::-ms-input-placeholder {
  color: black;
 }
 
 .outlined-search-bar {
   background-color: rgb(209, 199, 199);
   width: 500px;
-  font-size: 400px;
+  font-size: 600px;
   font-weight: 300px;
+  border-radius: 5px;
+  margin: auto;
 }
 
 .gamebox {
-  text-align: center;
-  top: 50%;
-  left: 50%;
-}
+text-align: center;} */
