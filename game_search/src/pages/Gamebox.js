@@ -2,31 +2,24 @@
 import React from "react";
 
 // MUI tings
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Card, CardContent, Typography } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
-import IconButton from "@material-ui/core/IconButton";
+
+// Pages
 import "../App.css";
 
 const useStyles = makeStyles((theme) => ({
+  // Area of the card
   cardParent: {
-    width: "800px",
+    width: "900px",
+    maxWidth: "80%",
     justify: "center",
     alignItems: "center",
+    background: "rgba(0,0,0,0.8)",
+    borderRadius: "10px",
   },
 
-  test: {
-    justify: "center",
-    alignItems: "justify",
-    textAlign: "center",
-  },
-
-  cover: {
-    width: 101,
-    background: "red",
-    borderColor: "red",
-    borderWidth: "20px",
-  },
   text: {
     fontSize: "20px",
     lineHeight: "35px",
@@ -34,16 +27,28 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "10px",
     textAlign: "justify",
     fontFamily: "Comfortaa",
+    color: "white",
   },
+
+  genres: {
+    fontSize: "20px",
+    lineHeight: "35px",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    textAlign: "justify",
+    fontFamily: "Comfortaa",
+    color: "rgb(249, 192, 192)",
+  },
+
+  image: {
+    textAlign: "center",
+  },
+
   gameName: {
     fontSize: "30px",
     fontFamily: "Comfortaa",
-    borderStyle: "solid",
-    borderWidth: "10px",
-    borderColor: "blue",
-    borderRadius: "10px",
-    color: "blue",
-    backgroundColor: "red",
+    fontWeight: "bold",
+    color: "white",
   },
 }));
 
@@ -62,8 +67,9 @@ export default function MediaControlCard() {
         <Grid container justify="center" alignItems="center">
           {/* Left Side */}
           <Grid item xs={4}>
-            <CardMedia>
-              <p style={{ color: "black" }}>IMAGE</p>
+            {/* Image of Game Cover */}
+            <CardMedia className={classes.image}>
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRawHyDnvhp8RglUQ_cSzzAIJkp2LSvaORKiDgdBa7go-Y4jfPp&usqp=CAU" />
             </CardMedia>
           </Grid>
 
@@ -74,14 +80,19 @@ export default function MediaControlCard() {
                 Game Name
               </Typography>
               <br />
-              <Typography className={classes.text}>Company</Typography>
-              <Typography className={classes.text}>Rating</Typography>
+              <Typography className={classes.text}>Publishers:</Typography>
+              <Typography className={classes.text}>Released:</Typography>
+              <Typography className={classes.text}>Rating:</Typography>
+              <br />
+              <Typography className={classes.genres}>
+                [Insert Genres Here]
+              </Typography>
               <br />
               <Typography className={classes.text}>
-                mbled it to make a type specimen book. It has survived not only
-                five centuries, but also the leap into electronic typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s
-                with iuhiiuyh iuiuiu iuhiugh
+                [Insert Description here] Embled it to make a type specimen
+                book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It
+                was popularised in the 1960s with iuhiiuyh iuiuiu iuhiugh
               </Typography>
             </CardContent>
           </Grid>
