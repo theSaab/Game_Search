@@ -1,27 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
-
-/*
-.App {
-  margin: 0px;
-  margin-top: 0px;
-  margin-bottom: 100px;
-  position: relative;
-  padding: 00px;
-  text-align: center;
-  position: fixed;
-  color: white;
-  
-}
-
-*{
-  margin: 0px;
-  padding: ;
-  outline: ;
-  box-sizing: ;
-  font-family: 'Comfortaa', cursives;
-}
-*/
 .background {
   background-image: url("../src/images/pacman.jpg");
   background-repeat: no-repeat;
@@ -29,48 +7,3 @@
   position: relative;
   background-color: black;
 }
-/*
-body {
-  height: 100vh;
-  position: absolute;
-  overflow: hidden;
-}
-
-.toggle-button {
-  background: rgb(221, 208, 208);
-}
-
-.search {
-  border-radius: 5px;
-  color: black;
-  font-size: 205px;
-  width: 460px;
-  background-color: rgb(221, 208, 208);
-  padding: 5px; 
-  position: fixed;
-}
-
-::placeholder {
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 20px;
-}
-
-:-ms-input-placeholder { 
- color: black;
-}
-
-::-ms-input-placeholder {
- color: black;
-}
-
-.outlined-search-bar {
-  background-color: rgb(209, 199, 199);
-  width: 500px;
-  font-size: 600px;
-  font-weight: 300px;
-  border-radius: 5px;
-  margin: auto;
-}
-
-.gamebox {
-text-align: center;} */

@@ -12,27 +12,23 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 // MUI Icons
 import SearchIcon from "@material-ui/icons/Search";
-import VideogameAssetIcon from '@material-ui/icons/VideogameAsset';
-import VideogameAssetOutlinedIcon from '@material-ui/icons/VideogameAssetOutlined';
-
+import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
+import VideogameAssetOutlinedIcon from "@material-ui/icons/VideogameAssetOutlined";
 
 // Font
-// import https://fonts.googleapis.com/css?family=Comfortaa
 
 const styles = (theme) => ({
   title: {
     color: "rgb(209, 199, 199)",
-    // align: "center",
     textAlign: "center",
     alignItems: "center",
     fontFamily: "Comfortaa",
-    height: '300px',
+    height: "300px",
   },
   background: {
     height: "100vh",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    // backgroundSize: "contain",
     position: "relative",
     backgroundColor: "black",
   },
@@ -61,7 +57,6 @@ export class AutoCompleteText extends Component {
     this.setState({
       gameName: event.target.value,
     });
-    // console.log(event.target.value);
   };
 
   handleSubmit = (event) => {
@@ -74,41 +69,13 @@ export class AutoCompleteText extends Component {
     });
   };
 
-  //   onTextChanged = (e) => {
-  //     const value = e.target.value;
-  //     let suggestions = [];
-  //     if (value.length > 0) {
-  //       const regex = new RegExp(`^${value}`, "i");
-  //       suggestions = this.items.sort().filter((v) => regex.test(v));
-  //     }
-  //     this.setState(() => ({ suggestions, text: value }));
-  //   };
-
-  //   suggestionSelected(value) {
-  //     this.setState(() => ({
-  //       text: value,
-  //       suggestions: [],
-  //     }));
-  //   }
-
-  //   renderSuggestions() {
-  //     const { suggestions } = this.state;
-  //     if (suggestions.length === 0) {
-  //       return null;
-  //     }
-  //     return (
-  //       <ul>
-  //         {suggestions.map((item) => (
-  //           <li onClick={() => this.suggestionSelected(item)}>{item}</li>
-  //         ))}
-  //       </ul>
-  //     );
-  //   }
-
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.background} className="backgroundImage">
+      <div
+        className={classes.background}
+        className="backgroundImage background"
+      >
         <Grid
           container // outter grid to space in middle
           direction="column"
@@ -118,9 +85,12 @@ export class AutoCompleteText extends Component {
         >
           <Grid item sm={9} align="center">
             <Typography variant="h2" className={classes.title}>
-              <VideogameAssetOutlinedIcon style={{color: 'pink', fontSize: "80px" }} /> 
-              <div style={{color: 'turquoise'}}>Game</div><div style={{ color: 'orange'}}>Search</div>
-              <SearchIcon style={{ color: 'red', fontSize: "80px" }} />
+              <VideogameAssetOutlinedIcon
+                style={{ color: "pink", fontSize: "80px" }}
+              />
+              <div style={{ color: "turquoise" }}>Game</div>
+              <div style={{ color: "orange" }}>Search</div>
+              <SearchIcon style={{ color: "red", fontSize: "80px" }} />
             </Typography>
           </Grid>
           <form onSubmit={this.handleSubmit}>
