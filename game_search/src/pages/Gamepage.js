@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import axios from "axios";
 
 // Pages
 import Gamebox from "./Gamebox";
@@ -26,20 +27,35 @@ export class Gamepage extends Component {
     const gameName = this.props.location.state.gameNameEnding;
     let fullGameUrl = "https://api.rawg.io/api/games/" + gameName;
 
-    const repoData = Promise.all([axios.get(fullGameUrl)]);
+    const repoData = axios
+      .get(fullGameUrl)
+      .then((res) => {
+        console.log(res.data);
 
-    repoData.then((res) => {
-      const metaCritic = res[5].data;
-      const name = res[2].data;
-      const playtime = res[19].data;
-      const developers = res[47].data;
-      const genre = res[48].data;
-      const releaseDate = res[7].data;
-      const description = res[4].data;
-    });
+        const metaCritic = res.data.metacritic;
+        const name = res.data.name;
+        const playtime = res.data.playtime;
+        const developers = res.data.developers;
+        const genre = res.data.genres[0].name;
+        // const genre2 = res.data.genres[1].genre;
+        const releaseDate = res.data.released;
+        const description = res.data.description_raw;
+
+        this.setState({
+          name: name,
+          metaCritic: metaCritic,
+          playtime: playtime,
+          developpers: developers,
+          releaseDate: releaseDate,
+          genre: genre,
+          description: description,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-  
   render() {
     const { classes } = this.props;
     return (
