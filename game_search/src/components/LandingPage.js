@@ -52,7 +52,9 @@ export class AutoCompleteText extends Component {
     event.preventDefault();
     this.props.history.push({
       pathname: "/Gamepage",
-      state: {},
+      state: {
+        gameNameEnding: this.state.gameName
+      },
     });
   };
 
