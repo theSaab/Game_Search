@@ -20,7 +20,9 @@ const styles = (theme) => ({
   // Format for title
   title: {
     fontFamily: "Comfortaa",
-    paddingBottom: "10px",
+    paddingBottom: "0px",
+    fontSize: "50px",
+    lineHeight: "60px",
   },
 
   // Format for search bar
@@ -57,7 +59,7 @@ export class AutoCompleteText extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="background">
+      <Grid className="background">
         <Grid
           container
           direction="column"
@@ -66,15 +68,25 @@ export class AutoCompleteText extends Component {
           style={{ height: "50vh", maxWidth: "100%" }}
         >
           {/* Title and Search Area */}
-          <div className={classes.titleBar}>
+          <Grid className={classes.titleBar}>
             {/* Title Area */}
             <Grid item sm={9} align="left">
               <Typography variant="h2" className={classes.title}>
                 <VideogameAssetOutlinedIcon
                   style={{ color: "pink", fontSize: "80px" }}
                 />
-                <div style={{ color: "turquoise" }}>Game</div>
-                <div style={{ color: "orange" }}>Search</div>
+                <Typography
+                  className={classes.title}
+                  style={{ color: "turquoise" }}
+                >
+                  Game
+                </Typography>
+                <Typography
+                  className={classes.title}
+                  style={{ color: "orange" }}
+                >
+                  Search
+                </Typography>
                 <SearchIcon style={{ color: "red", fontSize: "80px" }} />
               </Typography>
             </Grid>
@@ -101,9 +113,9 @@ export class AutoCompleteText extends Component {
                 />
               </form>
             </Grid>
-          </div>
+          </Grid>
         </Grid>
-      </div>
+      </Grid>
     );
   }
 }
