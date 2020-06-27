@@ -25,6 +25,19 @@ const styles = (theme) => ({
     lineHeight: "60px",
   },
 
+  errorMessage: {
+    color: "#FFFFFF",
+    textAlign: "center",
+    fontFamily: "Comfortaa",
+  },
+
+  title: {
+    fontFamily: "Comfortaa",
+    paddingBottom: "0px",
+    fontSize: "50px",
+    lineHeight: "60px",
+  },
+
   // Format for search bar
   searchBar: {
     backgroundColor: "rgb(209, 199, 199)",
@@ -38,6 +51,10 @@ const styles = (theme) => ({
 export class AutoCompleteText extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      gameName: "",
+      errors: "",
+    };
   }
 
   // Used to store name into var to search game later
@@ -50,16 +67,34 @@ export class AutoCompleteText extends Component {
   // Directs you to gamepage when submitting
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.history.push({
-      pathname: "/Gamepage",
-      state: {
-        gameNameEnding: this.state.gameName
-      },
-    });
+    if (!this.state.gameName) {
+      this.setState({
+        errors: "Please enter a game name",
+        gameName: "",
+      });
+      setTimeout(
+        function () {
+          this.setState({ errors: "" });
+        }.bind(this),
+        2500
+      );
+    } else {
+      this.setState({ errors: "" });
+      this.props.history.push({
+        pathname: "/Gamepage",
+        state: {
+          gameNameEnding: this.state.gameName,
+        },
+      });
+    }
   };
-
   render() {
     const { classes } = this.props;
+    const dispalyError = this.state.errors ? (
+      <Typography className={classes.errorMessage} variant="h5">
+        {this.state.errors}
+      </Typography>
+    ) : null;
     return (
       <Grid className="background">
         <Grid
@@ -70,7 +105,7 @@ export class AutoCompleteText extends Component {
           style={{ height: "50vh", maxWidth: "100%" }}
         >
           {/* Title and Search Area */}
-          <Grid className={classes.titleBar}>
+          <Grid>
             {/* Title Area */}
             <Grid item sm={9} align="left">
               <Typography variant="h2" className={classes.title}>
@@ -115,6 +150,7 @@ export class AutoCompleteText extends Component {
                 />
               </form>
             </Grid>
+            {dispalyError}
           </Grid>
         </Grid>
       </Grid>
