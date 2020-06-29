@@ -2,11 +2,6 @@
 import React, { Component, useState } from "react";
 import { withRouter } from "react-router";
 
-// Company Logos
-import playstation from "../images/playstation.png";
-import xbox from "../images/xbox.png";
-import steam from "../images/steam.png";
-
 // MUI tings
 import {
   Grid,
@@ -23,17 +18,16 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import RedditIcon from "@material-ui/icons/Reddit";
 
 // Pages
 import "../App.css";
+import Navbar from "./../layout/Navbar";
 
 const styles = (theme) => ({
   // Background
   background: {
     backgroundPosition: "center",
     backgroundSize: "cover",
-    position: "center",
     height: "100%",
     margin: "0",
     width: "100vw",
@@ -61,13 +55,21 @@ const styles = (theme) => ({
 
   description: {
     padding: "0 20px 40px 0",
-    fontSize: "22px",
+    fontSize: "16px",
     lineHeight: "34px",
     textAlign: "justify",
     fontFamily: "Comfortaa",
     color: "white",
-    height: "500px",
-    overflow: "scroll",
+  },
+
+  store: {
+    fontFamily: "Comfortaa",
+    fontSize: "15px",
+  },
+
+  scrollBar: {
+    overflowY: "scroll",
+    height: "240px",
   },
 
   info: {
@@ -80,40 +82,10 @@ const styles = (theme) => ({
     marginTop: "15px",
   },
 
-  // Reddit icon
-  reddit: {
-    margin: "0 2px",
-    textAlign: "justify",
-    color: "white",
-  },
-
-  //Reddit Icon background
-  redditBack: {
-    lineHeight: "30px",
-    width: "65px",
-    margin: "0 10px",
-    textAlign: "justify",
-    backgroundColor: "rgb(255, 67, 1)",
-    borderRadius: "45px",
-  },
-
-  psLogo: {
-    width: "80px",
-    backgroundColor: "rgba(0, 0, 0, 0)",
-    color: "red",
-  },
-
-  xbLogo: {
-    width: "75px",
-    backgroundColor: "rgba(0, 0, 0, 0)",
-    color: "red",
-  },
-
   // Website Button
   webButton: {
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: "rgba(175,238,238,0.1)",
     color: "turquoise",
-    fontSize: "20px",
     textTransform: "none",
     fontFamily: "Comfortaa",
   },
@@ -179,17 +151,20 @@ export class Gamebox extends Component {
         }}
         className={classes.background}
       >
+        <Grid>
+          <Navbar />
+        </Grid>
         <Grid
           container
           direction="row"
           justify="center"
-          alignItems="center"
+          // alignItems="center"
           style={{ minHeight: "100vh" }}
         >
           <Card className={classes.cardParent}>
             <Grid container justify="center" alignItems="center">
               {/* Left Side */}
-              <Grid item xs={6}>
+              <Grid item xs={5}>
                 {/* Image of Game Cover */}
                 <CardMedia
                   className={classes.image}
@@ -200,7 +175,7 @@ export class Gamebox extends Component {
               </Grid>
 
               {/* Right Side */}
-              <Grid item xs={6}>
+              <Grid item xs={7}>
                 <CardContent>
                   {/* Game Name */}
                   <Typography component="h4" className={classes.gameName}>
@@ -286,55 +261,51 @@ export class Gamebox extends Component {
                     </Grid>
                   </Grid>
                   {/* Random Links */}
+
                   {/* Reddit Link */}
                   <Grid
                     container
                     direction="row"
                     justify="center"
                     alignItems="center"
+                    spacing={1}
                   >
-                    <Grid item xs={3}>
-                      <Typography className={classes.redditBack}>
-                        <Link target="_blank" href={this.props.reddit_url}>
-                          <RedditIcon
-                            className={classes.reddit}
-                            style={{ color: "white", fontSize: "60px" }}
-                          />{" "}
-                        </Link>
-                      </Typography>
+                    <Grid item xs={6}>
+                      <Link target="_blank" href={this.props.reddit_url}>
+                        <Button className={classes.webButton}>
+                          <Typography className={classes.store}>
+                            {this.props.reddit_name}
+                          </Typography>
+                        </Button>
+                      </Link>
                     </Grid>
+
                     {/* Stores Link */}
-                    <Grid item xs={3}>
-                      <Link href={this.props.storePS} target="_blank">
-                        <CardMedia>
-                          <img
-                            className={classes.psLogo}
-                            src={playstation}
-                            alt="logo"
-                          />
-                        </CardMedia>
+                    <Grid item xs={6}>
+                      <Link target="_blank" href={this.props.store1Link}>
+                        <Button className={classes.webButton}>
+                          <Typography className={classes.store}>
+                            {this.props.store1}
+                          </Typography>
+                        </Button>
                       </Link>
                     </Grid>
-                    <Grid item xs={3}>
-                      <Link href={this.props.storeXB} target="_blank">
-                        <CardMedia>
-                          <img
-                            className={classes.xbLogo}
-                            src={xbox}
-                            alt="logo"
-                          />
-                        </CardMedia>
+                    <Grid item xs={6}>
+                      <Link target="_blank" href={this.props.store2Link}>
+                        <Button className={classes.webButton}>
+                          <Typography className={classes.store}>
+                            {this.props.store2}
+                          </Typography>
+                        </Button>
                       </Link>
                     </Grid>
-                    <Grid item xs={3}>
-                      <Link href={this.props.storeXB} target="_blank">
-                        <CardMedia>
-                          <img
-                            className={classes.xbLogo}
-                            src={steam}
-                            alt="logo"
-                          />
-                        </CardMedia>
+                    <Grid item xs={6}>
+                      <Link target="_blank" href={this.props.store3Link}>
+                        <Button className={classes.webButton}>
+                          <Typography className={classes.store}>
+                            {this.props.store3}
+                          </Typography>
+                        </Button>
                       </Link>
                     </Grid>
                   </Grid>
@@ -350,7 +321,7 @@ export class Gamebox extends Component {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 ></ExpansionPanelSummary>
-                <ExpansionPanelDetails>
+                <ExpansionPanelDetails className={classes.scrollBar}>
                   <Typography className={classes.description}>
                     {this.props.description}
                   </Typography>

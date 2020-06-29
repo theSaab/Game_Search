@@ -9,3 +9,51 @@
   background-color: black;
   height: 100vh;
 }
+
+.scroll {
+  overflow: hidden;
+  position: relative;
+}
+
+.redirect {
+  position: relative;
+  padding-top: 100px;
+  background-image: url("../src/images/loading.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-color: black;
+  height: 100%;
+}
+
+.DNE {
+  background-image: url("../src/images/ellie.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-color: black;
+  height: 100vh;
+}
+
+.dneButton {
+  background-color: rgba(47, 54, 54, 0.50);
+  border-radius: 10px;
+}
+
+.dneButton:hover {
+  background-color: rgb(47, 54, 54);
+}
+
+.redirectButton {
+  background-color: rgba(2, 255, 230, 0.813);
+  border-radius: 10px;
+}
+
+.redirectButton:hover {
+  background-color: rgb(72, 255, 237);
+}
+/* 
+::-webkit-scrollbar{
+  width: 10px
+}
+*/
