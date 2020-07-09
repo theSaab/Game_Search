@@ -10,15 +10,17 @@ import "../App.css";
 // MUI stuff
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Grid, Button } from "@material-ui/core";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 // Images
 
 const styles = (theme) => ({});
+
 export class Gamepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Loading...",
+      name: "",
       metaCritic: 0,
       playtime: 0,
       developers: "N/A",
@@ -40,7 +42,7 @@ export class Gamepage extends Component {
       redirect: false,
       displayWrongName: false,
       isLoaded: false,
-      redirect: false,
+      not_found: true,
     };
   }
 
@@ -50,8 +52,6 @@ export class Gamepage extends Component {
   }
 
   onRerender = () => {
-    console.log("AAAAAA");
-    console.log(this.state.name);
     this.axiosCall(this.state.name);
   };
 
@@ -66,8 +66,9 @@ export class Gamepage extends Component {
             isLoaded: true,
             redirect: true,
             name: redirectName,
+            not_found: false,
           });
-        } else {
+        } else if (!res.data.detail) {
           const name = res.data.name;
           const metaCritic = res.data.metacritic;
           const playtime = res.data.playtime;
@@ -110,6 +111,7 @@ export class Gamepage extends Component {
             reddit_name: reddit_name,
             isLoaded: true,
             redirect: false,
+            not_found: false,
           });
         }
       })
@@ -123,7 +125,14 @@ export class Gamepage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid>
+      <Grid
+        style={{
+          height: "100vh",
+          width: "100vw",
+          overflowX: "hidden",
+          overflowY: "hidden",
+        }}
+      >
         {this.state.redirect ? (
           <Grid className="redirect">
             <Grid
@@ -155,7 +164,6 @@ export class Gamepage extends Component {
                       fontFamily: "Comfortaa",
                       textTransform: "none",
                     }}
-                    onClick={this.onRerender}
                   >
                     No I did not. bruh
                   </Button>
@@ -164,7 +172,14 @@ export class Gamepage extends Component {
             </Grid>
           </Grid>
         ) : this.state.isLoaded ? (
-          <div>
+          <div
+            style={{
+              height: "100vh",
+              width: "100vw",
+              overflowX: "hidden",
+              overflowY: "hidden",
+            }}
+          >
             <Gamebox
               name={this.state.name}
               metaCritic={this.state.metaCritic}
@@ -187,33 +202,52 @@ export class Gamepage extends Component {
               esrb_rating={this.state.esrb_rating}
             />
           </div>
-        ) : (
-          <div className='scroll'>
-          <Grid className="DNE">
-            <Grid
-              container
-              spacing={0}
-              direction="column"
-              alignItems="center"
-              justify="center"
-              style={{ minHeight: "50vh" }}
-            >
-              <Grid item s={3} className="dneButton">
-                <Link to="/" style={{ textDecoration: "none" }}>
-                  <Button
-                    style={{
-                      color: 'ivory',
-                      fontSize: "18px",
-                      fontFamily: "Comfortaa",
-                      textTransform: "none",
-                    }}
-                  >
-                    Unable to find game
-                  </Button>
-                </Link>
+        ) : this.state.not_found ? (
+          <div className="scroll">
+            <Grid className="DNE">
+              <Grid
+                direction="row"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: "50vh" }}
+              >
+                <Grid
+                  item
+                  s={12}
+                  style={{ paddingTop: "20vh" }}
+                >
+                  <LinearProgress />
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </div>
+        ) : (
+          <div className="scroll">
+            <Grid className="DNE">
+              <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: "50vh" }}
+              >
+                <Grid item s={3} className="dneButton">
+                  <Link to="/" style={{ textDecoration: "none" }}>
+                    <Button
+                      style={{
+                        color: "ivory",
+                        fontSize: "18px",
+                        fontFamily: "Comfortaa",
+                        textTransform: "none",
+                      }}
+                    >
+                      Unable to Find Game
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </Grid>
           </div>
         )}
       </Grid>

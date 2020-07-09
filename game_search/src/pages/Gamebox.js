@@ -151,14 +151,13 @@ export class Gamebox extends Component {
         }}
         className={classes.background}
       >
-        <Grid>
+        <Grid >
           <Navbar />
         </Grid>
         <Grid
           container
           direction="row"
           justify="center"
-          // alignItems="center"
           style={{ minHeight: "100vh" }}
         >
           <Card className={classes.cardParent}>

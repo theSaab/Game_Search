@@ -36,7 +36,7 @@
 }
 
 .dneButton {
-  background-color: rgba(47, 54, 54, 0.50);
+  background-color: rgba(47, 54, 54, 0.5);
   border-radius: 10px;
 }
 
@@ -52,8 +52,16 @@
 .redirectButton:hover {
   background-color: rgb(72, 255, 237);
 }
-/* 
-::-webkit-scrollbar{
-  width: 10px
+
+.logoBtn {
+  background-color: aqua;
+  color: red;
 }
-*/
+
+.navBarSearchBar {
+  background-color: "rgb(209, 199, 199)";
+  border-radius: "5px";
+  border: "2px solid grey";
+  font-family: "Comfortaa";
+  width: "600px";
+}
