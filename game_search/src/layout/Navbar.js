@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 // MUI tings
 import Grid from "@material-ui/core/Grid";
@@ -23,9 +23,81 @@ import VideogameAssetOutlinedIcon from "@material-ui/icons/VideogameAssetOutline
 //   },
 // });
 export class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gameName: "",
+      errors: "",
+    };
+  }
+
+  // Used to store name into var to search game later
+  handleChange = (event) => {
+    this.setState({
+      gameName: event.target.value,
+    });
+  };
+
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   if (!this.state.gameName) {
+  //     this.setState({
+  //       errors: "Please enter a game name",
+  //       gameName: "",
+  //     });
+  //     setTimeout(
+  //       function () {
+  //         this.setState({ errors: "" });
+  //       }.bind(this),
+  //       2500
+  //     );
+  //   } else {
+  //     this.setState({ errors: "" });
+  //     this.props.history.push({
+  //       pathname: `/Gamepage/game/${this.state.gameName}`,
+  //       state: {
+  //         gameNameEnding: this.state.gameName,
+  //       },
+  //     });
+  //   }
+  // };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (!this.state.gameName) {
+      this.setState({
+        errors: "Please enter a game name",
+        gameName: "",
+      });
+      setTimeout(
+        function () {
+          this.setState({ errors: "" });
+        }.bind(this),
+        2500
+      );
+    } else {
+      this.setState({ errors: "" });
+      const gameName = this.state.gameName.replace(" ", "-");
+     
+      this.props.history.push({
+        pathname: `/Gamepage/game/${gameName}`,
+        state: {
+          gameNameEnding: gameName,
+        },
+      });
+    }
+  };
+
+
   render() {
     return (
-      <Grid container direction="row" m={12} justify="center" style={{paddingTop: '15px'}}>
+      <Grid
+        container
+        direction="row"
+        m={12}
+        justify="center"
+        style={{ paddingTop: "15px" }}
+      >
         {/* Logo */}
         <Grid container direction="row" spacing={0} style={{ width: "450px" }}>
           <Grid xs={1.5} align="center">
@@ -97,10 +169,19 @@ export class Navbar extends Component {
                 // className='navBarSearchBar'
                 onChange={this.handleChange}
                 InputProps={{
-                  style: { fontSize: 20, fontFamily: "Comfortaa", color: 'white', },
+                  style: {
+                    fontSize: 20,
+                    fontFamily: "Comfortaa",
+                    color: "white",
+                  },
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon style={{ height: "20px", color: "rgba(255,255,255,0.5)" }} />
+                      <SearchIcon
+                        style={{
+                          height: "20px",
+                          color: "rgba(255,255,255,0.5)",
+                        }}
+                      />
                     </InputAdornment>
                   ),
                 }}
@@ -113,4 +194,4 @@ export class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

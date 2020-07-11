@@ -143,6 +143,35 @@ export class Gamebox extends Component {
       this.state.setExpanded(!this.state.expanded);
     };
 
+    // const displayReddit = this.props.reddit_url.map((element)) => {
+    //   return (
+    //     <Grid item xs={6}>
+    //     <Link target="_blank" href={this.props.reddit_url}>
+    //       <Button className={classes.webButton}>
+    //         <Typography className={classes.store}>
+    //           {this.props.reddit_name}
+    //         </Typography>
+    //       </Button>
+    //     </Link>
+    //   </Grid>
+    //   )
+    // }
+    const displayStores = this.props.stores.map((element) => {
+      return (
+        <Grid item xs={6}>
+          <Link target="_blank" href={element.url}>
+            <Button className={classes.webButton}>
+              <Typography className={classes.store}>
+                {element.store.name}
+              </Typography>
+            </Button>
+          </Link>
+        </Grid>
+      );
+    });
+
+    // console.log(this.props.stores);
+
     return (
       <Grid
         style={{
@@ -151,7 +180,7 @@ export class Gamebox extends Component {
         }}
         className={classes.background}
       >
-        <Grid >
+        <Grid>
           <Navbar />
         </Grid>
         <Grid
@@ -280,33 +309,8 @@ export class Gamebox extends Component {
                     </Grid>
 
                     {/* Stores Link */}
-                    <Grid item xs={6}>
-                      <Link target="_blank" href={this.props.store1Link}>
-                        <Button className={classes.webButton}>
-                          <Typography className={classes.store}>
-                            {this.props.store1}
-                          </Typography>
-                        </Button>
-                      </Link>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Link target="_blank" href={this.props.store2Link}>
-                        <Button className={classes.webButton}>
-                          <Typography className={classes.store}>
-                            {this.props.store2}
-                          </Typography>
-                        </Button>
-                      </Link>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Link target="_blank" href={this.props.store3Link}>
-                        <Button className={classes.webButton}>
-                          <Typography className={classes.store}>
-                            {this.props.store3}
-                          </Typography>
-                        </Button>
-                      </Link>
-                    </Grid>
+                    {displayStores}
+                
                   </Grid>
                 </CardContent>
               </Grid>

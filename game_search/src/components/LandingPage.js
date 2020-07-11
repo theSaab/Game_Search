@@ -80,10 +80,11 @@ export class AutoCompleteText extends Component {
       );
     } else {
       this.setState({ errors: "" });
+      const gameName = this.state.gameName.replace(" ", "-");
       this.props.history.push({
-        pathname: "/Gamepage",
+        pathname: `/Gamepage/game/${gameName}`,
         state: {
-          gameNameEnding: this.state.gameName,
+          gameNameEnding: gameName,
         },
       });
     }

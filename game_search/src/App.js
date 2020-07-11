@@ -18,7 +18,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/Gamepage" component={Gamepage} />
+            <Route path="/Gamepage" component={Gamepage} />
           </Switch>
         </Router>
       </div>

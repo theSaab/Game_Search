@@ -20,29 +20,32 @@ export class Gamepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      name: "bruh",
       metaCritic: 0,
       playtime: 0,
       developers: "N/A",
       releaseDate: "N/A",
       genre: "",
-      genre: "",
+      genre2: "",
       description: "No description you bum",
       backgroundImage: "",
-      reddit_name: "",
-      reddit_url: "https://www.reddit.com/",
+      reddit_name: "r/",
+      reddit_url: "https://www.reddit.com",
       website: "",
-      store1: "",
-      store1Link: "",
-      store2: "",
-      store2Link: "",
-      store3: "",
-      store3Link: "",
+      stores: [],
+      // store1: "",
+      // store1Link: "",
+      // store2: "",
+      // store2Link: "",
+      // store3: "",
+      // store3Link: "",
       esrb_rating: "",
       redirect: false,
       displayWrongName: false,
       isLoaded: false,
       not_found: true,
+      exists: false
+      // store3Test: false,
     };
   }
 
@@ -50,9 +53,19 @@ export class Gamepage extends Component {
     const gameName = this.props.location.state.gameNameEnding;
     this.axiosCall(gameName);
   }
+  componentDidUpdate() {
+    const gameName = this.props.location.state.gameNameEnding;
+    this.axiosCall(gameName);
+  }
 
   onRerender = () => {
     this.axiosCall(this.state.name);
+    this.props.history.push({
+      pathname: `/Gamepage/game/${this.state.name}`,
+      state: {
+        gameNameEnding: this.state.gameName,
+      },
+    });
   };
 
   axiosCall = (gameName) => {
@@ -75,16 +88,11 @@ export class Gamepage extends Component {
           const developers = res.data.developers[0].name;
           const genre = res.data.genres[0].name;
           const genre2 = res.data.genres[1].name;
-          const store1 = res.data.stores[0].store.name;
-          const store1Link = res.data.stores[0].url;
-          const store2 = res.data.stores[1].store.name;
-          const store2Link = res.data.stores[1].url;
-          const store3 = res.data.stores[2].store.name;
-          const store3Link = res.data.stores[2].url;
+          const stores = res.data.stores; // Array of stores
           const releaseDate = res.data.released;
           const description = res.data.description_raw;
           const backgroundImage = res.data.background_image;
-          const reddit_name = res.data.reddit_name;
+          const reddit_name = "" + res.data.reddit_name;
           const reddit_url = res.data.reddit_url;
           const website = res.data.website;
           const esrb_rating = res.data.esrb_rating.name;
@@ -101,27 +109,29 @@ export class Gamepage extends Component {
             backgroundImage: backgroundImage,
             reddit_url: reddit_url,
             website: website,
-            store1: store1,
-            store1Link: store1Link,
-            store2: store2,
-            store2Link: store2Link,
-            store3: store3,
-            store3Link: store3Link,
+            stores: stores,
             esrb_rating: esrb_rating,
             reddit_name: reddit_name,
             isLoaded: true,
             redirect: false,
             not_found: false,
+            exists: true
           });
+        } else if (res.data.detail) {
+          const detail = res.data.detail;
+          this.setState({
+            exists: false
+          })
         }
       })
+
       .catch((err) => {
+        console.log(err);
         this.setState({
           displayWrongName: true,
         });
       });
   };
-
   render() {
     const { classes } = this.props;
     return (
@@ -193,16 +203,12 @@ export class Gamepage extends Component {
               reddit_url={this.state.reddit_url}
               reddit_name={this.state.reddit_name}
               website={this.state.website}
-              store1={this.state.store1}
-              store1Link={this.state.store1Link}
-              store2={this.state.store2}
-              store2Link={this.state.store2Link}
-              store3={this.state.store3}
-              store3Link={this.state.store3Link}
+              stores={this.state.stores}
               esrb_rating={this.state.esrb_rating}
+              newUrl={this.props.enterUrl}
             />
           </div>
-        ) : this.state.not_found ? (
+        ) : this.state.detail ? (
           <div className="scroll">
             <Grid className="DNE">
               <Grid
@@ -211,11 +217,7 @@ export class Gamepage extends Component {
                 justify="center"
                 style={{ minHeight: "50vh" }}
               >
-                <Grid
-                  item
-                  s={12}
-                  style={{ paddingTop: "20vh" }}
-                >
+                <Grid item s={12} style={{ paddingTop: "20vh" }}>
                   <LinearProgress />
                 </Grid>
               </Grid>
@@ -233,7 +235,7 @@ export class Gamepage extends Component {
                 style={{ minHeight: "50vh" }}
               >
                 <Grid item s={3} className="dneButton">
-                  <Link to="/" style={{ textDecoration: "none" }}>
+                  <Link to="/" style={{ textDecoration: "none  " }}>
                     <Button
                       style={{
                         color: "ivory",
